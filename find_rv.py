@@ -314,7 +314,7 @@ def radial_velocity(wv_obj,fx_obj,sig_obj,wv_std,fx_std,sig_std,obj_name,std_nam
                 #fig.savefig(figname)
             #fig.clf()
             #plt.close()
-            print "amp={0: 12.4f}  mu={1: 10.4f}  sig={2: 9.4f}  sky={3: 11.4f}  sky2={4: 8.4f}".format(amp,mean,sig,sky,sky2)
+            print("amp={0: 12.4f}  mu={1: 10.4f}  sig={2: 9.4f}  sky={3: 11.4f}  sky2={4: 8.4f}".format(amp,mean,sig,sky,sky2))
             
         # if ier < 5:
         pix_shift[l] = mean
@@ -344,7 +344,7 @@ def radial_velocity(wv_obj,fx_obj,sig_obj,wv_std,fx_std,sig_std,obj_name,std_nam
     
     # 4a. Cut out outliers from the pixel shift
     if cut == 1:
-        print cutstart,cutend
+        print(cutstart,cutend)
         pix_shift = pix_shift[np.where((pix_shift > np.float(cutstart)) & (pix_shift < np.float(cutend)))]
 
     # 4b. Compute the mean pixel shift (rv value) and pixel shift uncertainty (RV uncertainty).

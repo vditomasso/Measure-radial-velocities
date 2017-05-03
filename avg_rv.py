@@ -16,6 +16,8 @@ def avg_rv(path_to_df):
     rvs = np.asarray(rvs)
     uncs = np.asarray(uncs)
 
-    rv, unc = weighted_stddev(rvs, uncs)
+    rv,unc = weighted_stddev.wstddev(rvs, uncs)
 
-    print("Avg RV = " + str(rv) + " +/- " + str(unc))
+    return rv,unc
+
+    # print("Avg RV = " + str(rv) + " +/- " + str(unc))
