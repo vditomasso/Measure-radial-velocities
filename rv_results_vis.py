@@ -2,7 +2,6 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
 import NIRSPEC
-import astrometry
 import avg_rv
 
 
@@ -19,15 +18,18 @@ def rv_vis(path_to_rv_results_minus_df, obj_spec_type=30):
 
         spec_type = float(spec_type)
 
-    # plt.scatter(spec_type,row['obj_rv'],color='black')
+        plt.scatter(spec_type, row['obj_rv'], color='black')
 
-    # 		plt.errorbar(spec_type, row['obj_rv'], yerr=row['obj_unc'],color='black',alpha=0.7)
+        plt.errorbar(spec_type, row['obj_rv'], yerr=row['obj_unc'], color='black', alpha=0.7)
 
     beginning_of_path = path_to_rv_results_minus_df.split('/')[6]
     obj_name = beginning_of_path.split('_')[0]
     # 	print obj_name
 
     rv, unc = avg_rv.avg_rv(path_to_rv_results_minus_df)
+
+    obj_spec_type = obj_spec_type.replace('M', '0').replace('L', '1').replace('T', '2')
+    obj_spec_type = float(obj_spec_type)
 
     plt.scatter(obj_spec_type, rv, marker='*', s=200, color='blue')
     plt.annotate(str(obj_name), xycoords='axes fraction', xy=(.77, .05), size=15)
@@ -47,6 +49,6 @@ def rv_vis(path_to_rv_results_minus_df, obj_spec_type=30):
     plt.xlabel('Spectral Type')
     plt.ylabel('Calculated RV')
 
-    plt.savefig(str(obj_name)+'_calculated_rvs.png')
+    plt.savefig(str(obj_name) + '_calculated_rvs.png')
 
     plt.show()
