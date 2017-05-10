@@ -71,7 +71,9 @@ def lsf_rotate(deltav, vsini, epsilon=None, velgrid=None):
 def radial_velocity(wv_obj, fx_obj, sig_obj, wv_std, fx_std, sig_std, obj_name, std_name, rv_std, rv_std_err, order,
                     xcorr_width, cut, cutstart, cutend):
     """Calculates a radial velocity
+
     Input: wavelength_object, flux_object, uncertainty_object, wavelength_standard, flux_standard, uncertainty_standard, object_name, rv_standard, error_rv_standard, spectral_order, xcorr_width, cut, cutstart, cutend
+
     Returns: rv_measurement, error_rv_measurement"""
 
     # The more random iterations, the better... but it takes longer
