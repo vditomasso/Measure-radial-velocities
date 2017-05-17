@@ -50,8 +50,10 @@ Main operation of find_rv_outliers.radial_velocity involves:
 1. Constructing a new wavelength array based on the overlap between the two spectra, at 10x input resolution
 2. Interpolating both input datasets onto that wavelength array
 3. In a loop for N monte carlo tries:
-   4. Regularize data (subtract mean, divide by standard deviation)
-   5. Remove cubic fit to data, to remove the slope of the data
+
+  4. Regularize data (subtract mean, divide by standard deviation)
+
+  5. Remove cubic fit to data, to remove the slope of the data
    6. Cross-correlate the RV standard and object spectrum
    7. Chop out just the region (of generally size 200 units) around the peak of the cross-correlation function.
    8. Fit a gaussian+linear curve to the cross correlation peak. The location of the gaussian peak should be the optimal rv shift (in pixels)
