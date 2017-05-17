@@ -16,15 +16,15 @@ FINAL NOTE: The radial velocity uncertainties output from this code only relate 
 
 ## Update
 
-find_rv_outliers.py will now run until 1000 iterations have been generated within set limits, for use with noisy spectra where some of the crossmatches are clearly unphysical outliers. This is an update to the older version that would simply remove everything outside those limits and calculate based on a smaller number of points.
+find_rv.py will now run until 1000 iterations have been generated within set limits, for use with noisy spectra where some of the crossmatches are clearly unphysical outliers. This is an update to the older version that would simply remove everything outside those limits and calculate based on a smaller number of points.
 
 
 ## How to use:
 
 
-import find_rv_outliers.py, and then run find_rv_outliers.radial_velocity with the following arguments:
+import find_rv.py, and then run find_rv.radial_velocity with the following arguments:
 
-find_rv_outliers.radial_velocity(wavelength_object,flux_object,uncertainty_object, # spectral data on your target (uncertainty is NOT SNR)
+find_rv.radial_velocity(wavelength_object,flux_object,uncertainty_object, # spectral data on your target (uncertainty is NOT SNR)
               wavelength_standard,flux_standard,uncertainty_standard, # spectral data on a star with known RV, in the same (or at least overlapping) wavelength region
               name_obj,name_standard, # their names, for the plots (see point 2 below for details)
               rv_standard,rv_uncertainty_std, # the radial velocity of the standard, for the plots
@@ -47,6 +47,10 @@ The items in [] are optional. (see point 5 below for what 'crop flag' means)
 
 mass_rv.py, avg_rv.py and weighted_stddev.py are all wrappers made to make it easier to run the find_rv code for multiple standard objects. To measure the radial velocity of an object with a reliable uncertainty, it is best to measure the RV of that object against a variety of standards and then average those results (Reidel et al 2017, in prep). mass_rv.py expects a pandas dataframe saved as a tab separated CSV file as an input, and it produces a pandas DF with the various results. avg_rv.py uses weighted_stddev.py to find the weighted average of the results to give a final RV measurement with uncertainty.
 
+mass_rv inputs: filename of the object's spectum (wavelength and flux), name of the object (as a string), path to a tab separated panda dataframe saved as a csv file (with 'filename', 'std_rv', 'std_unc' columns)
+
+avg_rv inputs: path to pandas dataframe with columns 'obj_rv' and 'obj_unc'
+
 #### Visualizing results
 
 rv_results_vis.py creates plots using the output file from mass_rv. As written, rv_results_vis will produce a plot of the spectral type of the RV standard vs the resultant RV measurement using that standard. Examples of these plots are found in this repo, "New_visualization.png" and "Old_visualization.png"
@@ -56,7 +60,7 @@ rv_results_vis.py creates plots using the output file from mass_rv. As written, 
 
 Point 1:
 
-Main operation of find_rv_outliers.radial_velocity involves:
+Main operation of find_rv.radial_velocity involves:
 1. Constructing a new wavelength array based on the overlap between the two spectra, at 10x input resolution
 2. Interpolating both input datasets onto that wavelength array
 3. In a loop for N monte carlo tries:
@@ -82,7 +86,7 @@ Occasionally, when the SNR of a spectrum is low, the cross-correlation function 
 If you set the last three arguments in find_rv.radial_velocity to 1,minimum_pixel_shift,maximum_pixel_shift, you can force the final gaussian fit (step 10) to ignore all values outside those boundaries, isolating just the good RVs.
 USE THIS OPTION SPARINGLY AND WITH CARE. If misused, you could theoretically force the output RV to be whatever you wanted.
 
-find_rv_outliers.py will force the program to keep running until 1000 points are generated within the range [minimum_pixel_shift,maximum_pixel_shift] and should produce more robust results if such a restriction is necessary.
+find_rv.py will force the program to keep running until 1000 points are generated within the range [minimum_pixel_shift,maximum_pixel_shift] and should produce more robust results if such a restriction is necessary.
 
 Point 5:
 Both NIRSPEC.py and FIRE.py use the 'crop flag' to trim outliers from a spectrum. If you set 'crop flag' to 1, any points more than 3 standard deviations from the mean of the spectrum will be removed, prior to the arrays being sent to find_rv.radial_velocity.
