@@ -1,6 +1,6 @@
 # RV
 
-The BDNYC RV fitting code (Vivienne Baldassare 2011-2012, Adric Riedel 2012-2015)
+The BDNYC RV fitting code (Vivienne Baldassare 2011-2012, Adric Riedel 2012-2015, Victoria DiTomasso 2015-2017)
 It uses cross-correlation to determine the RV shift between the spectrum of an object, and the spectrum of a standard star.
 It takes out a third-order polynomial fit and regularizes the data, to reduce the effect of scaling and calibration-related differences between the two spectra. 
 It uses 1000 Monte Carlo tries with different additive scaled (to the uncertainty array) noise to remove the effects of noise on the data.
