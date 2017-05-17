@@ -13,14 +13,14 @@ It is:
  * And therefore all objects should be paired up with RV standards of a similar spectral type, so the lines and bands in both spectra are close to the same.
 FINAL NOTE: The radial velocity uncertainties output from this code only relate to the noise in the spectra. There are other sources of error (wavelength calibration errors, for instance) that affect the spectra. It is highly recommended to take a weighted mean of multiple different runs (different standards, different spectra of the target star, different orders if the spectra are from an echelle) to get the TRUE radial velocity uncertainty.
 
-
+#############
 ## Update
-
+#############
 find_rv_outliers.py will now run until 1000 iterations have been generated within set limits, for use with noisy spectra where some of the crossmatches are clearly unphysical outliers. This is an update to the older version that would simply remove everything outside those limits and calculate based on a smaller number of points.
 
-
-## How to use:
-
+##################################
+How to use:
+##################################
 
 import find_rv_outliers.py, and then run find_rv_outliers.radial_velocity with the following arguments:
 
@@ -50,15 +50,12 @@ Main operation of find_rv_outliers.radial_velocity involves:
 1. Constructing a new wavelength array based on the overlap between the two spectra, at 10x input resolution
 2. Interpolating both input datasets onto that wavelength array
 3. In a loop for N monte carlo tries:
-
   4. Regularize data (subtract mean, divide by standard deviation)
-
   5. Remove cubic fit to data, to remove the slope of the data
-   6. Cross-correlate the RV standard and object spectrum
-   7. Chop out just the region (of generally size 200 units) around the peak of the cross-correlation function.
-   8. Fit a gaussian+linear curve to the cross correlation peak. The location of the gaussian peak should be the optimal rv shift (in pixels)
-   9. Store that peak location
-
+  6. Cross-correlate the RV standard and object spectrum
+  7. Chop out just the region (of generally size 200 units) around the peak of the cross-correlation function.
+  8. Fit a gaussian+linear curve to the cross correlation peak. The location of the gaussian peak should be the optimal rv shift (in pixels)
+  9. Store that peak location
 10. Fit a gaussian to the set of N gaussian peaks. The center of the gaussian should be the correct RV shift; the width of the gaussian the uncertainty based on noise.
 11. Convert the pixel shifts to actual kilometer-per-second RVs.
 12. Make some plots demonstrating the fit
@@ -72,13 +69,12 @@ The size of the region chopped out of the cross-correlation function (Step 7 abo
 
 Point 4:
 Occasionally, when the SNR of a spectrum is low, the cross-correlation function will occasionally favor a bad match - matching up some similar-but-incorrect region of the spectrum, or a spike in the noise. The most common symptom is that the output RV is in the hundreds or thousands of km/s, the output RV uncertainty is similarly enormous, and the bottom panel of the output plot (from step 12) show two spikes in the pixel shift histogram, rather than a smooth bell curve- one near zero, and one with a pixel shift of +/- thousands of pixels. The assumption is that the spike near 0 pixel shift is the actual RV, and the spike at some enormous pixel shift is some sort of off-lock, where the process was fooled into lining up the spectra in some obvious way (the top plot of the two shifted spectra should also look obviously wrong).
-If you set the last three arguments in find_rv.radial_velocity to 1,minimum_pixel_shift,maximum_pixel_shift, you can force the final gaussian fit (step 10) to ignore all values outside those boundaries, isolating just the good RVs. 
+If you set the last three arguments in find_rv.radial_velocity to 1,minimum_pixel_shift,maximum_pixel_shift, you can force the final gaussian fit (step 10) to ignore all values outside those boundaries, isolating just the good RVs.
 USE THIS OPTION SPARINGLY AND WITH CARE. If misused, you could theoretically force the output RV to be whatever you wanted.
 
 find_rv_outliers.py will force the program to keep running until 1000 points are generated within the range [minimum_pixel_shift,maximum_pixel_shift] and should produce more robust results if such a restriction is necessary.
 
 Point 5:
-Both NIRSPEC.py and FIRE.py use the 'crop flag' to trim outliers from a spectrum. If you set 'crop flag' to 1, any points more than 3 standard deviations from the mean of the spectrum will be removed, prior to the arrays being sent to find_rv.radial_velocity. 
+Both NIRSPEC.py and FIRE.py use the 'crop flag' to trim outliers from a spectrum. If you set 'crop flag' to 1, any points more than 3 standard deviations from the mean of the spectrum will be removed, prior to the arrays being sent to find_rv.radial_velocity.
 USE THIS OPTION WITH CARE: This could remove actual useful data from a spectrum that has deep features or lines. It's probably better to write your own more clever routine to remove outliers. Or do it by hand.
-
 
