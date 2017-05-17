@@ -1,4 +1,4 @@
-from Measure-radial-velocities.weighted_stddev import wstddev
+from Measure-radial-velocity.weighted_stddev import *
 import pytest
 
 def test_weighted_stddev_1():
@@ -6,3 +6,9 @@ def test_weighted_stddev_1():
 
 def test_weighted_stddev_2():
     assert 1 == 1
+
+# def f():
+#     return 3
+#
+# def test_function():
+#     assert f() == 3
