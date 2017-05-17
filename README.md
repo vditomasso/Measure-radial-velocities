@@ -51,7 +51,7 @@ Main operation of find_rv_outliers.radial_velocity involves:
 2. Interpolating both input datasets onto that wavelength array
 3. In a loop for N monte carlo tries:
 
-⋅⋅⋅4.Regularize data (subtract mean, divide by standard deviation)
+⋅⋅⋅Regularize data (subtract mean, divide by standard deviation)
 
 ⋅⋅⋅5. Remove cubic fit to data, to remove the slope of the data
 
