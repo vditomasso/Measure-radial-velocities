@@ -19,7 +19,7 @@ FINAL NOTE: The radial velocity uncertainties output from this code only relate 
 find_rv_outliers.py will now run until 1000 iterations have been generated within set limits, for use with noisy spectra where some of the crossmatches are clearly unphysical outliers. This is an update to the older version that would simply remove everything outside those limits and calculate based on a smaller number of points.
 
 ##################################
-How to use:
+## How to use:
 ##################################
 
 import find_rv_outliers.py, and then run find_rv_outliers.radial_velocity with the following arguments:
@@ -42,8 +42,9 @@ Both NIRSPEC.py and FIRE.py expect the same command-line arguments:
 The items in [] are optional. (see point 5 below for what 'crop flag' means)
 
 ######################################
-How it works:
+## How it works:
 ######################################
+
 Point 1:
 
 Main operation of find_rv_outliers.radial_velocity involves:
