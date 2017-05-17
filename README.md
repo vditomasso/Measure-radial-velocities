@@ -13,14 +13,14 @@ It is:
  * And therefore all objects should be paired up with RV standards of a similar spectral type, so the lines and bands in both spectra are close to the same.
 FINAL NOTE: The radial velocity uncertainties output from this code only relate to the noise in the spectra. There are other sources of error (wavelength calibration errors, for instance) that affect the spectra. It is highly recommended to take a weighted mean of multiple different runs (different standards, different spectra of the target star, different orders if the spectra are from an echelle) to get the TRUE radial velocity uncertainty.
 
-#############
+
 ## Update
-#############
+
 find_rv_outliers.py will now run until 1000 iterations have been generated within set limits, for use with noisy spectra where some of the crossmatches are clearly unphysical outliers. This is an update to the older version that would simply remove everything outside those limits and calculate based on a smaller number of points.
 
-##################################
+
 ## How to use:
-##################################
+
 
 import find_rv_outliers.py, and then run find_rv_outliers.radial_velocity with the following arguments:
 
@@ -41,9 +41,9 @@ Both NIRSPEC.py and FIRE.py expect the same command-line arguments:
 > XXXXX.py standard_spectrum standard_rv standard_rv_uncertainty object_spectrum crop_flag [cross_correlation_width rv_cut_start rv_cut_end]
 The items in [] are optional. (see point 5 below for what 'crop flag' means)
 
-######################################
+
 ## How it works:
-######################################
+
 
 Point 1:
 
