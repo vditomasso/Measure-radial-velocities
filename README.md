@@ -32,7 +32,7 @@ find_rv_outliers.radial_velocity(wavelength_object,flux_object,uncertainty_objec
               cross_correlation_width, # set to 200 for 'default', see point 3 below for what this means
               pixel_cut_flag,pixel_cut_start,pixel_cut_end) # set all to zero by default. See point 4 below for what this means
 
-### Wrappers
+#### Wrappers
 
 Generally, I have used this code with a wrapper that reads in and cleans up input data and runs it through radial_velocity().
 Two such wrappers are included in this repository as examples:
@@ -43,11 +43,11 @@ Both NIRSPEC.py and FIRE.py expect the same command-line arguments:
 > XXXXX.py standard_spectrum standard_rv standard_rv_uncertainty object_spectrum crop_flag [cross_correlation_width rv_cut_start rv_cut_end]
 The items in [] are optional. (see point 5 below for what 'crop flag' means)
 
-### Running for multiple standards objects
+#### Running for multiple standards objects
 
 mass_rv.py, avg_rv.py and weighted_stddev.py are all wrappers made to make it easier to run the find_rv code for multiple standard objects. To measure the radial velocity of an object with a reliable uncertainty, it is best to measure the RV of that object against a variety of standards and then average those results (Reidel et al 2017, in prep). mass_rv.py expects a pandas dataframe saved as a tab separated CSV file as an input, and it produces a pandas DF with the various results. avg_rv.py uses weighted_stddev.py to find the weighted average of the results to give a final RV measurement with uncertainty.
 
-### Visualizing results
+#### Visualizing results
 
 rv_results_vis.py creates plots using the output file from mass_rv. As written, rv_results_vis will produce a plot of the spectral type of the RV standard vs the resultant RV measurement using that standard. Examples of these plots are found in this repo, "New_visualization.png" and "Old_visualization.png"
 
