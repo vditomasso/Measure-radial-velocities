@@ -47,13 +47,15 @@ The items in [] are optional. (see point 5 below for what 'crop flag' means)
 
 mass_rv.py, avg_rv.py and weighted_stddev.py are all wrappers made to make it easier to run the find_rv code for multiple standard objects. To measure the radial velocity of an object with a reliable uncertainty, it is best to measure the RV of that object against a variety of standards and then average those results (Reidel et al 2017, in prep). mass_rv.py expects a pandas dataframe saved as a tab separated CSV file as an input, and it produces a pandas DF with the various results. avg_rv.py uses weighted_stddev.py to find the weighted average of the results to give a final RV measurement with uncertainty.
 
-mass_rv inputs: filename of the object's spectum (wavelength and flux), name of the object (as a string), path to a tab separated panda dataframe saved as a csv file (with 'filename', 'std_rv', 'std_unc' columns)
+mass_rv, input: filename of the object's spectum (wavelength and flux), name of the object (as a string), path to a tab separated panda dataframe saved as a csv file (with 'filename', 'std_rv', 'std_unc' columns)
 
-avg_rv inputs: path to pandas dataframe with columns 'obj_rv' and 'obj_unc'
+avg_rv, input: path to pandas dataframe with columns 'obj_rv' and 'obj_unc'
 
 #### Visualizing results
 
-rv_results_vis.py creates plots using the output file from mass_rv. As written, rv_results_vis will produce a plot of the spectral type of the RV standard vs the resultant RV measurement using that standard. Examples of these plots are found in this repo, "New_visualization.png" and "Old_visualization.png"
+rv_results_vis.py creates plots using the output file from mass_rv. As written, rv_results_vis will produce a plot of the spectral type of the RV standard vs the resultant RV measurement using that standard. Examples of the plots produced are found in this repo, labeled "New_visualization.png".
+
+Input: path to the tab separated pandas dataframe saved as a csv file and the spectral type of the object whose RV you're measuring
 
 ## How it works:
 
