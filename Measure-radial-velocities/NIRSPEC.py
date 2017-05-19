@@ -133,20 +133,12 @@ def main(argv=None):
     obj_wave = numpy.asarray(spec_obj['col1'])
     obj_flux = numpy.asarray(spec_obj['col2'])
 
-    avg_snr = numpy.sum(obj_snr) / len(obj_snr)
-    if avg_snr > 4.0:
-        obj_unc = 1.0 / obj_snr
-    else:
-        obj_unc = obj_snr
+    obj_unc = obj_flux / obj_snr
 
     std_wave = numpy.asarray(spec_std['col1'])
     std_flux = numpy.asarray(spec_std['col2'])
 
-    avg_snr = numpy.sum(std_snr) / len(std_snr)
-    if avg_snr > 4.0:
-        std_unc = 1.0 / std_snr
-    else:
-        std_unc = std_snr
+    std_unc = std_flux / std_snr
 
     # remove spikes (bad pixels, etc) from the spectrum. Use with caution.
     if crop == 1:
@@ -182,7 +174,8 @@ def main(argv=None):
 
     return [rv_obj, rv_obj_err]
 
-    outstring1 = "std:{1:} obj:{0:}  Order {2:>2d} rv={3:>6.3f} +/- {4:>6.3f}\n".format(starname_obj, starname_std, order_obj, rv_obj, rv_obj_err)
+    outstring1 = 'std:{1:} obj:{0:}  Order {2:>2d} rv={3:>6.3f} +/- {4:>6.3f}\n'.format(starname_obj, starname_std,
+                                                                                        order_obj, rv_obj, rv_obj_err)
     print(outstring1)
     g.write(outstring1)
 
