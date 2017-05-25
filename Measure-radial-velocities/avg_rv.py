@@ -6,7 +6,7 @@ import weighted_stddev
 def avg_rv(path_to_df):
     """Calculates a weighted average and uncertainty of the radial velocities in a given dataframe
 
-    Input: path to pandas dataframe with columns 'obj_rv' and 'obj_unc'
+    Argument: path to pandas dataframe with columns 'obj_rv' and 'obj_unc'
 
     Returns: rv, unc"""
 

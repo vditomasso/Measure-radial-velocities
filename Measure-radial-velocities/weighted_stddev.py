@@ -5,7 +5,7 @@ import numpy as np
 def wstddev(x, u):
     """Calculates a weighted average and uncertainty on that average
 
-    Input: data, uncertainties on that data
+    Argument: data, uncertainties on that data
 
     Returns: average, uncertainty on the average"""
 

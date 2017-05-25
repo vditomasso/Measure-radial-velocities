@@ -11,8 +11,7 @@ def mass_rv(obj_filename, path_to_obj_unc, obj_name, path_to_df):
     error = []
 
     for i, row in df.iterrows():
-        rv_and_error = NIRSPEC.main(
-            ['', row['filename'], row['std_rv'], row['std_unc'], obj_filename, 1, row['unc_file'], path_to_obj_unc])
+        rv_and_error = NIRSPEC.main(['', row['filename'], row['std_rv'], row['std_unc'], obj_filename, 1, row['unc_file'], path_to_obj_unc])
         RV.append(rv_and_error[0])
         error.append(rv_and_error[1])
 
