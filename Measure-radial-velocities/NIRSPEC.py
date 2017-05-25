@@ -1,9 +1,7 @@
 import math
 import sys
-
 import numpy
 from astropy.io import ascii
-
 import find_rv
 
 
@@ -56,11 +54,13 @@ def clip(a,start,end):
     return numpy.asarray(out)
 
 def main(argv=None):
-    """Uses find_rv to calculated a RV using NIRSPEC data.
+    """
+    Uses find_rv to calculated a RV using NIRSPEC data.
 
-    Input: a list, ex: ['','std_path',rv_std,rv_std_err,'obj_path',crop_usually_1,xcorr_width_optional,cutstart_optional,cutend_optional]
+    Argument: a list, ex: ['','std_path',rv_std,rv_std_err,'obj_path',crop_usually_1,xcorr_width_optional,cutstart_optional,cutend_optional]
 
-    Output: Figure of find_rv iterations, textfile of code results, prints calculated RV and uncertainty"""
+    Returns: Figure of find_rv iterations, textfile of code results, prints calculated RV and uncertainty
+    """
 
     if argv is None:
         argv = sys.argv
