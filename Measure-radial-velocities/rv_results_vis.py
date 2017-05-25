@@ -62,11 +62,11 @@ def rv_vis(path_to_rv_results_minus_df,tar_spec_type):
     ax.set_xticks(spec_type_range)
     ax.set_xticklabels(labels)
 
-    # Makes variables with the highest and lowest y-value on the plot
+    # Assigns highest and lowest y-value to y_axis_max and y_axis_min variables
     y_axis_min = ax.get_ylim()[0]
     y_axis_max = ax.get_ylim()[1]
 
-    # Sets the y axis ticks to the lowster y-value, highest y-value, the average RV and the limits of the final averaged RV uncertainty
+    # Sets the y-axis ticks to the lowest y-value, highest y-value, the average RV and the limits of the final averaged RV uncertainty
     ax.yaxis.set_major_formatter(FormatStrFormatter('%.1f'))
     y_axis_ticks=[y_axis_min, rv-unc, rv, rv+unc, y_axis_max]
     ax.set_yticks(y_axis_ticks)
