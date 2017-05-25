@@ -28,9 +28,9 @@ def avg_rv(path_to_df):
     uncs = np.asarray(uncs)
 
     # Calculated the weighted average with uncertainty
-    rv,unc = weighted_stddev.wstddev(rvs, uncs)
+    rv_wtavg,unc_wtavg = weighted_stddev.wstddev(rvs, uncs)
 
     # Returns the calculated average and uncertainty
-    return rv,unc
+    return rv_wtavg,unc_wtavg
 
     # print("Avg RV = " + str(rv) + " +/- " + str(unc))
