@@ -4,11 +4,13 @@ import pandas as pd
 from matplotlib.ticker import FormatStrFormatter
 
 def rv_vis(path_to_rv_results_minus_df,tar_spec_type):
-    """Creates a plot of spectral type of the RV standard object vs the calculated RV for a single object using that given standard.
+    """
+    Creates a plot of spectral type of the RV standard object vs the calculated RV for a single object using that given standard.
 
-    Input: path to the tab separated pandas dataframe saved as a csv file and the spectral type of the object whose RV you're measuring
+    Argument: path to the tab separated pandas dataframe saved as a csv file and the spectral type of the object whose RV you're measuring
 
-    Output: saves the file as a png"""
+    Return: saves the file as a png
+    """
 
     # Reads in the given database
     df = pd.read_csv(path_to_rv_results_minus_df, sep='\t')
